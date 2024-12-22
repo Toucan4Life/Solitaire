@@ -1,6 +1,8 @@
 extends Node
 
 const NO_OF_PILES = 6
+const PILE_X_OFFSET = 350
+const PILE_Y_OFFSET = 200
 
 var deck = []
 var piles = []

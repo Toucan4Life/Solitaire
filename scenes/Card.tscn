@@ -6,16 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsiyw"]
 size = Vector2(98, 146)
 
-[node name="Card" type="Area2D"]
+[node name="Card" type="Area2D" groups=["card"]]
 script = ExtResource("1_us4iu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(263, 208)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_ie2fi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(263, 208)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["card"]]
 shape = SubResource("RectangleShape2D_bsiyw")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
