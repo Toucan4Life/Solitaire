@@ -16,12 +16,13 @@ var previous_position = []
 func _ready() -> void:
 	update_sprite()
 
-func _input(event):
+func _input(event):	
 	if not is_mouse_entered or (suit == -1 and value == -1):
 		return
 		
-	if Input.is_action_just_pressed("left_click") and stock:
+	if Input.is_action_just_pressed("left_click") and stock and !flipped:
 		update_stock_top()
+		get_viewport().set_input_as_handled()
 		return
 		
 	if Input.is_action_just_pressed("left_click") and flipped:
@@ -33,7 +34,7 @@ func _input(event):
 		is_dragging = false
 		if !drop_card():
 			reset_cards()
-
+	
 func update_sprite():
 	if sprite:
 		sprite.texture = get_texture()
@@ -120,11 +121,13 @@ func move_to_new_pile(new_card):
 		print("YOU WON!!!")
 		
 func update_stock_top():
+
+	var temppos = GameManager.deck[0].position
 	var current_stock_top = GameManager.deck.pop_back()
 	current_stock_top.flip()
 	current_stock_top.stock = true
 	var pos = current_stock_top.position
-	current_stock_top.position = GameManager.deck[0].position
+	current_stock_top.position = temppos
 	
 	GameManager.deck.insert(0,current_stock_top)
 	
